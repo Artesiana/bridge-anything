@@ -1,13 +1,13 @@
 ---
 name: bridge-anything
-description: Build an integration bridge (REST, MCP, CLI) into on-premise or legacy software that has no usable API, using REA (Reverse Engineer Anything) to find where the data lives and how the app reads and writes it. Use when someone needs to read or write data in a system of record without an API (practice management, dealer, tax, ERP or other desktop software), wants an MCP server for such a system, or wants to list a finished bridge on OpenCoupler.
+description: Connect an app or agent to software that has no usable API by building a bridge (REST, MCP, CLI) next to it, using REA (Reverse Engineer Anything) to find where the data lives and how the software reads and writes it. Use when an app, automation or agent needs data from an on-premise or legacy system (practice management, dealer, tax, ERP or other desktop software), or someone wants an MCP server for such a system.
 metadata:
   version: "1"
 ---
 
 # Bridge Anything
 
-A **bridge** is a small service that runs next to a legacy **system of record** and exposes its data through a typed **contract**: REST, MCP and optionally a CLI. You build it in six steps. Each step ends on a completion criterion; finish it before starting the next one.
+A **bridge** is a small service that runs next to a legacy **system of record** and exposes its data through a typed **contract**: REST, MCP and optionally a CLI. Its first client is the user's own app or agent. You build it in seven steps. Each step ends on a completion criterion; finish it before starting the next one.
 
 **Evidence** is the leading word of this skill. Every table, column, file, query and write path the bridge relies on traces back to something REA showed you (a schema dump, a SQL string in an assembly, a recorded file write) or to a document from the vendor. A mapping without evidence is a guess; mark it as an unknown and keep going.
 
@@ -78,8 +78,14 @@ Write the contract first, then the code. [references/bridge-blueprint.md](refere
 - an agent connected to the bridge's MCP server answered one real question per data area on the test installation;
 - `DATA-PROTECTION.md` lists every personal-data field the bridge returns, where it is sent, and how long anything is kept.
 
-## Step 6. Publish (optional)
+## Step 6. Connect the app
 
-Ask the user whether to list the bridge on OpenCoupler, a marketplace where software companies and IT service providers look for integrations into systems without an open API. If yes, follow [references/publish-to-opencoupler.md](references/publish-to-opencoupler.md). The listing describes what step 5 built and nothing more.
+Wire the user's app or agent to the bridge: generate a typed client from `contract/` for the app, or register the bridge's MCP server in the agent. The app talks to the bridge only, never to the legacy database, so a vendor update changes the bridge and nothing else.
 
-**Done when** `list_my_listings` shows the listing `in_review` and the user has read and confirmed the submitted text.
+**Done when** the user's app or agent shows real data from the test installation through the bridge, at least one screen or answer per data area.
+
+## Step 7. Share it (optional)
+
+Ask whether others should be able to use the bridge: inside the user's own product, as open source, or listed on OpenCoupler, a marketplace where software companies and IT service providers look for integrations into systems without an open API. For OpenCoupler, follow [references/publish-to-opencoupler.md](references/publish-to-opencoupler.md). Whatever the channel, the description states what step 5 built and nothing more.
+
+**Done when** the user has chosen a channel, or none, and has read and confirmed any public text before it goes out.

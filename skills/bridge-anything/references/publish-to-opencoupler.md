@@ -1,6 +1,6 @@
 # Publish to OpenCoupler
 
-Read for step 6. OpenCoupler (https://opencoupler.com) is a marketplace for integrations into on-premise and legacy software. Providers list an integration per system; buyers compare them, contact the provider on the platform, and request systems nobody covers yet. A human reviews every listing before it goes public.
+Read for step 7. OpenCoupler (https://opencoupler.com) is a marketplace for integrations into on-premise and legacy software. Providers list an integration per system; buyers compare them, contact the provider on the platform, and request systems nobody covers yet. A human reviews every listing before it goes public.
 
 ## One-time setup (the user does this in the browser)
 
